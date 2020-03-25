@@ -1,1 +1,2 @@
-# cb1
+# Data Collector for COVID-19
+
