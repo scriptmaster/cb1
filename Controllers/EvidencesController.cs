@@ -23,6 +23,19 @@ namespace covid_api.Controllers
             return "CountryCode: " + countryCode;
         }
 
+        [HttpGet("{countryCode}/{stateCode}")]
+        public ActionResult<string> GetByState(string countryCode, string stateCode)
+        {
+            return $"CountryCode: {countryCode}, StateCode: {stateCode}";
+        }
+
+        [HttpGet("{countryCode}/{stateCode}/{districtCode}")]
+        public ActionResult<string> GetByDistrict(string countryCode, string stateCode, string districtCode)
+        {
+            return $"CountryCode: {countryCode}, StateCode: {stateCode}, DistrictCode: {districtCode}";
+        }
+
+
         [HttpPost]
         public void HelpConfirmedCase(
             [FromBody]

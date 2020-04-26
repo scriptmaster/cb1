@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,7 +25,14 @@ namespace covid_api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwagger(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // services.AddScoped<ServiceHelper>();
+			// services.AddScoped<ValidationHelper>();
+			// services.AddHttpClient<IExternalApi, ExternalApi>(client =>
+			// {
+			// 	client.BaseAddress = new Uri(Configuration["ExternalApiBaseURL"]);
+			// });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -38,7 +46,9 @@ namespace covid_api
                 app.UseHsts();
             }
 
+            app.UseSwaggerMiddleware();
             //app.UseHttpsRedirection();
+
             app.UseMvc();
         }
     }
